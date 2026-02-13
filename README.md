@@ -1,8 +1,9 @@
-# Sudoku Chat
+# Sudocker
 
-Flutter frontend for a Sudoku+Chat app with login/register UI, validation, and API placeholders.
+Najjaca aplikacija na svijetu
 
-## Features
+
+#Funkcionalnosti
 
 - Login/register toggle screen
 - Username rules: 3-15 chars, lowercase + digits + . or _, no leading/trailing . or _, no consecutive dots
@@ -11,5 +12,6 @@ Flutter frontend for a Sudoku+Chat app with login/register UI, validation, and A
 
 ## Run
 
+Samo ovo pokrenite
 1. `flutter pub get`
 2. `flutter run`
