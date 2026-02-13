@@ -571,7 +571,6 @@ class _HomeScreenState extends State<HomeScreen> {
       9,
       (row) => List.generate(9, (col) => _given[row][col]),
     );
-
   }
 
   bool _isFixed(int row, int col) => _given[row][col] != 0;
@@ -699,9 +698,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         const SizedBox(height: 4),
                         Text(
                           'Pick a mode to start playing or chatting.',
-                          style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                                color: const Color(0xFF9A93B3),
-                              ),
+                          style: Theme.of(context).textTheme.bodyMedium
+                              ?.copyWith(color: const Color(0xFF9A93B3)),
                         ),
                         const SizedBox(height: 20),
                         Text(
@@ -728,25 +726,40 @@ class _HomeScreenState extends State<HomeScreen> {
                             children: [
                               LayoutBuilder(
                                 builder: (context, constraints) {
-                                  final gridSize = min(constraints.maxWidth, 360.0);
+                                  final gridSize = min(
+                                    constraints.maxWidth,
+                                    360.0,
+                                  );
                                   return SizedBox(
                                     height: gridSize,
                                     width: gridSize,
                                     child: GridView.builder(
-                                      physics: const NeverScrollableScrollPhysics(),
-                                      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                                        crossAxisCount: 9,
-                                      ),
+                                      physics:
+                                          const NeverScrollableScrollPhysics(),
+                                      gridDelegate:
+                                          const SliverGridDelegateWithFixedCrossAxisCount(
+                                            crossAxisCount: 9,
+                                          ),
                                       itemCount: 81,
                                       itemBuilder: (context, index) {
                                         final row = index ~/ 9;
                                         final col = index % 9;
                                         final value = _values[row][col];
                                         final isFixed = _isFixed(row, col);
-                                        final isConflict = _isConflict(row, col, value);
-                                        final isSelected = _selectedRow == row && _selectedCol == col;
-                                        final borderColor = const Color(0xFF2A2436);
-                                        final thickBorderColor = const Color(0xFF3C3350);
+                                        final isConflict = _isConflict(
+                                          row,
+                                          col,
+                                          value,
+                                        );
+                                        final isSelected =
+                                            _selectedRow == row &&
+                                            _selectedCol == col;
+                                        final borderColor = const Color(
+                                          0xFF2A2436,
+                                        );
+                                        final thickBorderColor = const Color(
+                                          0xFF3C3350,
+                                        );
 
                                         return InkWell(
                                           onTap: () => _selectCell(row, col),
@@ -755,33 +768,53 @@ class _HomeScreenState extends State<HomeScreen> {
                                               color: isSelected
                                                   ? const Color(0xFF221B33)
                                                   : isConflict
-                                                      ? const Color(0xFF3A1D2D)
-                                                      : const Color(0xFF15131C),
+                                                  ? const Color(0xFF3A1D2D)
+                                                  : const Color(0xFF15131C),
                                               border: Border(
                                                 top: BorderSide(
-                                                  color: row % 3 == 0 ? thickBorderColor : borderColor,
-                                                  width: row % 3 == 0 ? 1.4 : 0.6,
+                                                  color: row % 3 == 0
+                                                      ? thickBorderColor
+                                                      : borderColor,
+                                                  width: row % 3 == 0
+                                                      ? 1.4
+                                                      : 0.6,
                                                 ),
                                                 left: BorderSide(
-                                                  color: col % 3 == 0 ? thickBorderColor : borderColor,
-                                                  width: col % 3 == 0 ? 1.4 : 0.6,
+                                                  color: col % 3 == 0
+                                                      ? thickBorderColor
+                                                      : borderColor,
+                                                  width: col % 3 == 0
+                                                      ? 1.4
+                                                      : 0.6,
                                                 ),
                                                 right: BorderSide(
-                                                  color: (col + 1) % 3 == 0 ? thickBorderColor : borderColor,
-                                                  width: (col + 1) % 3 == 0 ? 1.4 : 0.6,
+                                                  color: (col + 1) % 3 == 0
+                                                      ? thickBorderColor
+                                                      : borderColor,
+                                                  width: (col + 1) % 3 == 0
+                                                      ? 1.4
+                                                      : 0.6,
                                                 ),
                                                 bottom: BorderSide(
-                                                  color: (row + 1) % 3 == 0 ? thickBorderColor : borderColor,
-                                                  width: (row + 1) % 3 == 0 ? 1.4 : 0.6,
+                                                  color: (row + 1) % 3 == 0
+                                                      ? thickBorderColor
+                                                      : borderColor,
+                                                  width: (row + 1) % 3 == 0
+                                                      ? 1.4
+                                                      : 0.6,
                                                 ),
                                               ),
                                             ),
                                             child: Center(
                                               child: Text(
-                                                value == 0 ? '' : value.toString(),
+                                                value == 0
+                                                    ? ''
+                                                    : value.toString(),
                                                 style: TextStyle(
                                                   fontSize: 16,
-                                                  fontWeight: isFixed ? FontWeight.w700 : FontWeight.w600,
+                                                  fontWeight: isFixed
+                                                      ? FontWeight.w700
+                                                      : FontWeight.w600,
                                                   color: isFixed
                                                       ? const Color(0xFFEAE6FF)
                                                       : const Color(0xFFB38BFF),
@@ -816,10 +849,16 @@ class _HomeScreenState extends State<HomeScreen> {
                                       onPressed: _resetSudoku,
                                       style: OutlinedButton.styleFrom(
                                         foregroundColor: colorScheme.primary,
-                                        side: const BorderSide(color: Color(0xFF3C3350)),
-                                        padding: const EdgeInsets.symmetric(vertical: 12),
+                                        side: const BorderSide(
+                                          color: Color(0xFF3C3350),
+                                        ),
+                                        padding: const EdgeInsets.symmetric(
+                                          vertical: 12,
+                                        ),
                                         shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.circular(14),
+                                          borderRadius: BorderRadius.circular(
+                                            14,
+                                          ),
                                         ),
                                       ),
                                       child: const Text('Reset'),
@@ -830,11 +869,19 @@ class _HomeScreenState extends State<HomeScreen> {
                                     child: OutlinedButton(
                                       onPressed: () => _setCellValue(0),
                                       style: OutlinedButton.styleFrom(
-                                        foregroundColor: const Color(0xFFB38BFF),
-                                        side: const BorderSide(color: Color(0xFF3C3350)),
-                                        padding: const EdgeInsets.symmetric(vertical: 12),
+                                        foregroundColor: const Color(
+                                          0xFFB38BFF,
+                                        ),
+                                        side: const BorderSide(
+                                          color: Color(0xFF3C3350),
+                                        ),
+                                        padding: const EdgeInsets.symmetric(
+                                          vertical: 12,
+                                        ),
                                         shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.circular(14),
+                                          borderRadius: BorderRadius.circular(
+                                            14,
+                                          ),
                                         ),
                                       ),
                                       child: const Text('Clear'),
@@ -888,10 +935,7 @@ class _SudokuKey extends StatelessWidget {
             side: const BorderSide(color: Color(0xFF2C2640)),
           ),
         ),
-        child: Text(
-          label,
-          style: const TextStyle(fontWeight: FontWeight.w700),
-        ),
+        child: Text(label, style: const TextStyle(fontWeight: FontWeight.w700)),
       ),
     );
   }
