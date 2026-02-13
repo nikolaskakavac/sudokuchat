@@ -3,7 +3,7 @@
 Najjaca aplikacija na svijetu
 
 
-#Funkcionalnosti
+Funkcionalnosti
 
 - Login/register toggle screen
 - Username rules: 3-15 chars, lowercase + digits + . or _, no leading/trailing . or _, no consecutive dots
